@@ -4,14 +4,11 @@ declare(strict_types=1);
 
 namespace app\controllers;
 
-use app\models\Author;
-use app\models\Book;
 use app\models\ContactForm;
 use app\models\LoginForm;
 use Yii;
 use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
-use yii\mongodb\Query;
 use yii\web\Controller;
 use yii\web\Response;
 
@@ -66,37 +63,6 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        $book = Book::find()->one();
-
-        var_dump($book->author->getFullName());
-        exit;
-
-        // $author = Author::find()->where(['first_name' => 'Linda'])->one();
-
-        // $book = new Book();
-        // $book->author_id = $author->_id;
-        // $book->title = 'Excepteur aliquip ipsum voluptate officia excepteur non adipisicing minim esse minim cillum nostrud.';
-        // $book->year = 2022;
-        // $result = $book->save();
-
-        // var_dump($result);
-        // var_dump($book->getErrors());
-
-        // $author = new Author();
-        // $author->first_name = ' Linda ';
-        // $author->last_name = ' Trevino ';
-        // $author->date_of_birth = mktime(0, 0, 0, 5, 25, 1982);
-        // $result = $author->save();
-        // var_dump($result);
-        // var_dump($author);
-        // $query = new Query();
-        // // compose the query
-        // $query->select(['name', 'status'])
-        //     ->from('author')
-        //     ->limit(10);
-        // // execute the query
-        // $rows = $query->all();
-
         return $this->render('index');
     }
 
