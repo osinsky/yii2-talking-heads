@@ -1,0 +1,12 @@
+# Level 0 is the loosest and 9 is the strictest.
+parameters:
+    level: 1
+    paths:
+        - assets
+        - commands
+        - controllers
+        - models
+        - views
+        - widgets
+    bootstrapFiles:
+        - vendor/yiisoft/yii2/Yii.php

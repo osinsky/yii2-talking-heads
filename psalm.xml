@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!-- Level 1 is the most strict, level 8 is the most lenient. -->
+<psalm
+    errorLevel="8"
+    autoloader="vendor/yiisoft/yii2/Yii.php"
+    resolveFromConfigFile="true"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns="https://getpsalm.org/schema/config"
+    xsi:schemaLocation="https://getpsalm.org/schema/config vendor/vimeo/psalm/config.xsd"
+>
+    <projectFiles>
+        <directory name="assets" />
+        <directory name="commands" />
+        <directory name="controllers" />
+        <directory name="models" />
+        <directory name="widgets" />
+        <ignoreFiles>
+            <directory name="vendor" />
+        </ignoreFiles>
+    </projectFiles>
+</psalm>
