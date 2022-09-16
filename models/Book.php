@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace app\models;
 
-use MongoDB\BSON\ObjectID;
 use yii\behaviors\TimestampBehavior;
 use yii\mongodb\ActiveQuery;
 use yii\mongodb\ActiveRecord;
@@ -42,7 +41,7 @@ class Book extends ActiveRecord
             [['year', 'created_at', 'updated_at'], 'integer'],
             [['title'], 'filter', 'filter' => 'trim', 'skipOnArray' => true],
             // [['author_id'], ObjectID::class],
-            // [['author_id'], 'exist', 'skipOnError' => true, 'targetClass' => Author::class, 'targetAttribute' => ['author_id' => 'id']],
+            [['author_id'], 'exist', 'skipOnError' => true, 'targetClass' => Author::class, 'targetAttribute' => ['author_id' => '_id']],
         ];
     }
 
@@ -51,7 +50,7 @@ class Book extends ActiveRecord
         return $this->hasOne(Author::class, ['_id' => 'author_id']);
     }
 
-    public function fields()
+    public function fields(): array
     {
         return [
             '_id',
@@ -63,7 +62,7 @@ class Book extends ActiveRecord
         ];
     }
 
-    public function transformForView()
+    public function transformForView(): array
     {
         return [
             '_id' => (string) $this->_id,

@@ -24,7 +24,7 @@ class MyFixtureController extends Controller
             $model->save();
         }
 
-        $authorIds = array_map(fn ($x) => $x, ArrayHelper::getColumn(Author::find()->all(), '_id'));
+        $authorIds = ArrayHelper::getColumn(Author::find()->all(), '_id');
         $authorsCount = count($authorIds);
 
         $books = require __DIR__ . '/../tests/unit/fixtures/data/book.php';

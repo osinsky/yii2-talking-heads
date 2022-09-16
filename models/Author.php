@@ -21,6 +21,13 @@ class Author extends ActiveRecord
         return ['_id', 'first_name', 'last_name', 'date_of_birth', 'biography', 'created_at', 'updated_at'];
     }
 
+    public function transactions()
+    {
+        return [
+            self::SCENARIO_DEFAULT => self::OP_DELETE,
+        ];
+    }
+
     /**
      * @return array<string>
      */
@@ -49,12 +56,19 @@ class Author extends ActiveRecord
         return $this->hasMany(Book::class, ['author_id' => '_id']);
     }
 
+    public function delete(): int|bool
+    {
+        Book::deleteAll(['author_id' => $this->_id]);
+
+        return parent::delete();
+    }
+
     public function getFullName(): string
     {
         return $this->first_name . ' ' . $this->last_name;
     }
 
-    public function fields()
+    public function fields(): array
     {
         return [
             '_id',
@@ -64,12 +78,12 @@ class Author extends ActiveRecord
         ];
     }
 
-    public function getFormattedDateOfBirth()
+    public function getFormattedDateOfBirth(): string
     {
         return Yii::$app->formatter->asDate($this->date_of_birth, 'yyyy.MM.dd');
     }
 
-    public function transformForView()
+    public function transformForView(): array
     {
         $books = array_map(fn ($item) => ['title' => $item->title, 'year' => $item->year], $this->books);
 
